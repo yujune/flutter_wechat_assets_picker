@@ -109,6 +109,7 @@ class AssetPicker<Asset, Path> extends StatefulWidget {
 class AssetPickerState<Asset, Path> extends State<AssetPicker<Asset, Path>>
     with TickerProviderStateMixin, WidgetsBindingObserver {
   Completer<PermissionState>? permissionStateLock;
+  bool _shouldRequestPermission = true;
 
   @override
   void initState() {
@@ -122,6 +123,10 @@ class AssetPickerState<Asset, Path> extends State<AssetPicker<Asset, Path>>
   void didChangeAppLifecycleState(AppLifecycleState state) {
     super.didChangeAppLifecycleState(state);
     if (state == AppLifecycleState.resumed) {
+      if (!_shouldRequestPermission) {
+        return;
+      }
+      _shouldRequestPermission = false;
       requestPermission().then((ps) {
         if (!mounted) {
           return;
@@ -131,6 +136,8 @@ class AssetPickerState<Asset, Path> extends State<AssetPicker<Asset, Path>>
           _onAssetsUpdated(const MethodCall(''));
         }
       });
+    } else if (state == AppLifecycleState.paused) {
+      _shouldRequestPermission = true;
     }
   }
 
