@@ -271,7 +271,7 @@ class AssetPickerDelegate {
           iconTheme: IconThemeData(color: Colors.grey[900]),
           elevation: 0,
         ),
-        bottomAppBarTheme: BottomAppBarTheme(
+        bottomAppBarTheme: BottomAppBarThemeData(
           color: Colors.grey[100],
         ),
         buttonTheme: ButtonThemeData(buttonColor: themeColor),
@@ -324,7 +324,7 @@ class AssetPickerDelegate {
         iconTheme: const IconThemeData(color: Colors.white),
         elevation: 0,
       ),
-      bottomAppBarTheme: BottomAppBarTheme(
+      bottomAppBarTheme: BottomAppBarThemeData(
         color: Colors.grey[850],
       ),
       buttonTheme: ButtonThemeData(buttonColor: themeColor),
